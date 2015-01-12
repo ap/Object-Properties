@@ -74,7 +74,7 @@ __END__
  package Someclass;
  use Object::Properties foo => \&_check_foo, qw( bar baz );
  sub _check_foo {
-     croak 'Someclass "bar" property may not be a reference'
+     croak 'Someclass "foo" property may not be a reference'
          if ref $_[1];
  }
 
