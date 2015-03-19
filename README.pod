@@ -8,7 +8,7 @@ Object::Properties - minimal-ceremony class builder
 
 =head1 VERSION
 
-version 1.000
+version 1.001
 
 =head1 SYNOPSIS
 
