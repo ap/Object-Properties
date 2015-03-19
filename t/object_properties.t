@@ -3,22 +3,8 @@ use warnings;
 
 use Test::More 0.88; # for done_testing
 use Test::Fatal 'exception';
+use Test::Lives;
 use Object::Properties ();
-
-sub lives_and (&$) {
-	my ( $cb, $name ) = @_;
-	local $Test::Builder::Level = $Test::Builder::Level+1;
-	local $@;
-	my $ok = \&Test::Builder::ok;
-	no warnings 'redefine';
-	local *Test::Builder::ok = sub {
-		$_[2] = $name unless defined $_[2];
-		goto &$ok;
-	};
-	eval { $cb->(); 1 } or do { fail $name; diag $@ };
-}
-
-########################################################################
 
 use lib 't/lib';
 
@@ -39,11 +25,11 @@ for my $obj ( SomeClass->new( rw => 1, ro => 2, xx => 3 ) ) {
 	is $obj->{'ro'}, 2, '... and "ro"';
 	is $obj->{'xx'}, 3, '... and "xx"';
 
-	lives_and { is $obj->rw, 1 } 'Accessors exist and give the expected answers';
-	lives_and { is $obj->ro, 2 } '... for declared fields';
+	lives_and { is $obj->rw, 1, $_ } 'Accessors exist and give the expected answers';
+	lives_and { is $obj->ro, 2, $_ } '... for declared fields';
 	like exception { $obj->xx }, qr/locate object method/, '... but not for other keys';
 
-	lives_and { $obj->rw = 42; is $obj->rw, 42 } 'Read-write accessors can be written to';
+	lives_and { $obj->rw = 42; is $obj->rw, 42, $_ } 'Read-write accessors can be written to';
 	like exception { $obj->ro = 42 }, qr/non-lvalue/, '... but not read-only ones';
 }
 
@@ -80,8 +66,8 @@ for my $obj ( SubClass->new( foo => 1, bar => 2, baz => 3 ) ) {
 	is $obj->{'foo'}, 1, '... with correct value for "foo"';
 	is $obj->{'bar'}, 2, '... and "bar"';
 	is $obj->{'baz'}, 3, '... and "baz"';
-	lives_and { is $obj->foo, 1 } 'Accessors exist and give the expected answers';
-	lives_and { is $obj->bar, 2 } '... for declared fields';
+	lives_and { is $obj->foo, 1, $_ } 'Accessors exist and give the expected answers';
+	lives_and { is $obj->bar, 2, $_ } '... for declared fields';
 	like exception { $obj->baz }, qr/locate object method/, '... but not for other keys';
 }
 
