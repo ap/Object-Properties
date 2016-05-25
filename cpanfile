@@ -4,7 +4,6 @@ requires 'warnings';
 
 requires 'Sentinel';
 requires 'NEXT';
-requires 'Import::Into';
 
 on test => sub {
 	requires 'Carp';

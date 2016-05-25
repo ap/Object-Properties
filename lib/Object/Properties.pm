@@ -7,7 +7,6 @@ package Object::Properties;
 
 # ABSTRACT: minimal-ceremony class builder
 
-use Import::Into ();
 use Sentinel ();
 
 sub _make_init {
