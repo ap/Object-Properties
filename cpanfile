@@ -11,7 +11,6 @@ on test => sub {
 	requires 'Test::Lives';
 	requires 'Test::More', '0.88';
 	requires 'lib';
-	requires 'parent';
 };
 
 # vim: ft=perl
