@@ -7,11 +7,9 @@ requires 'NEXT';
 
 on test => sub {
 	requires 'Carp';
-	requires 'Test::Fatal';
 	requires 'Test::Lives';
-	requires 'Test::More', '0.88';
+	requires 'Test::More';
 	requires 'lib';
-	requires 'parent';
 };
 
 # vim: ft=perl
