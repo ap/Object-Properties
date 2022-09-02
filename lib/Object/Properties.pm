@@ -5,7 +5,7 @@ use warnings;
 
 package Object::Properties;
 
-# ABSTRACT: minimal-ceremony class builder
+our $VERSION = '1.002';
 
 use Sentinel ();
 
@@ -87,6 +87,8 @@ sub import {
 
 package Object::Properties::Base;
 
+our $VERSION = '1.002';
+
 use NEXT ();
 
 sub new {
@@ -100,6 +102,14 @@ sub new {
 1;
 
 __END__
+
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+Object::Properties - minimal-ceremony class builder
 
 =head1 SYNOPSIS
 
@@ -242,3 +252,5 @@ undefined during the comparison in C<_munge_page>, and any value other than
 =item * L<MooX::LvalueAttribute>
 
 =back
+
+=cut
