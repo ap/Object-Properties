@@ -5,7 +5,7 @@ use warnings;
 
 package Object::Properties;
 
-our $VERSION = '1.002';
+our $VERSION = '1.003';
 
 use Sentinel ();
 
@@ -87,7 +87,7 @@ sub import {
 
 package Object::Properties::Base;
 
-our $VERSION = '1.002';
+our $VERSION = '1.003';
 
 use NEXT ();
 
